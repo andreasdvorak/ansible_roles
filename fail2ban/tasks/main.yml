@@ -1,0 +1,22 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Install fail2ban packages
+  ansible.builtin.package:
+    name: "{{ fail2ban_packages }}"
+    state: present
+
+- name: enable fail2ban server
+  ansible.builtin.systemd:
+    state: started
+    name: "{{ fail2ban_service }}"
+    enabled: true
+
+- name: Configuration
+  ansible.builtin.import_tasks: 
+    file: configure.yml
+
+- name: Monitoring
+  ansible.builtin.import_tasks: 
+    file: monitoring.yml
