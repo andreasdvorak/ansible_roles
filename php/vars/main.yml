@@ -1,0 +1,21 @@
+---
+opcache_configuration:
+  - option: opcache.enable
+    value: "1"
+    section: opcache
+  - option: opcache.interned_strings_buffer
+    value: "9"
+    section: opcache
+  - option: opcache.max_accelerated_files
+    value: "10000"
+    section: opcache
+  - option: opcache.memory_consumption
+    value: "128"
+    section: opcache
+  - option: opcache.save_comments
+    value: "1"
+    section: opcache
+  - option: opcache.revalidate_freq
+    value: "1"
+    section: opcache
+

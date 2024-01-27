@@ -1,0 +1,12 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Install php packages
+  ansible.builtin.package:
+    name: "{{ php_packages }}"
+    state: present
+
+- name: Configuration
+  ansible.builtin.import_tasks: 
+    file: configure.yml
