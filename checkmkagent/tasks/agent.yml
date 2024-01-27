@@ -1,0 +1,22 @@
+---
+- name: Upload CheckMK agent package {{ checkmk_version }}
+  ansible.builtin.copy:
+    src: /tmp/{{ checkmk_agent_package }}
+    dest: /home/ansible/{{ checkmk_agent_package }}
+
+- name: Check that agent file exists {{ checkmk_version }}
+  stat:
+    path: /home/ansible/{{ checkmk_agent_package }}
+  register: package_upload
+
+- name: Install CheckMK agent package {{ checkmk_version }}
+  ansible.builtin.apt:
+    deb: "/home/ansible/{{ checkmk_agent_package }}"
+  when:
+    - ansible_facts['distribution'] == "Debian"
+    - package_upload.stat.exists
+
+- name: Remove remote CheckMK agent package file
+  ansible.builtin.file:
+    path: "/home/ansible/{{ checkmk_agent_package }}"
+    state: absent

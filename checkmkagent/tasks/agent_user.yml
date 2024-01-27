@@ -1,0 +1,32 @@
+---
+- name: "Create group {{ checkmk_agent_user }}"
+  ansible.builtin.group:
+    name: "{{ checkmk_agent_user }}"
+    state: present
+
+- name: "Create user {{ checkmk_agent_user }}"
+  ansible.builtin.user:
+    name: "{{ checkmk_agent_user }}"
+    comment: "{{ checkmk_agent_user }} user"
+    group: "{{ checkmk_agent_user }}"
+    shell: /bin/bash
+
+- name: "Create .ssh folder for {{ checkmk_agent_user }}"
+  file:
+    path: "~{{ checkmk_agent_user }}/.ssh"
+    state: directory
+    owner: "{{ checkmk_agent_user }}"
+    group: "{{ checkmk_agent_user }}"
+    mode: 0700
+
+- name: "Add authorized key for {{ checkmk_agent_user }}"
+  authorized_key:
+    user: "{{ checkmk_agent_user }}"
+    key: "{{ lookup('file', checkmk_agent_public_key_source ) }}"
+    exclusive: yes
+
+- name: "Allow sudo for {{ checkmk_agent_user }}"
+  copy:
+    content: "{{ checkmk_agent_user }} ALL=(ALL) NOPASSWD: ALL"
+    dest: "/etc/sudoers.d/{{ checkmk_agent_user }}"
+    mode: 0600
