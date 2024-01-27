@@ -1,0 +1,8 @@
+---
+- name: Create checkmk backup directory
+  ansible.builtin.file:
+    path: /backup/checkmk
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
