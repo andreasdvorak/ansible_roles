@@ -26,13 +26,3 @@
     backup: yes
   notify:
     - Restart postfix
-
-- name: Set aliases
-  lineinfile:
-    dest: /etc/aliases
-    regexp: '^root:'
-    line: "root: {{ email }}"
-    state: present
-    backup: yes
-  notify:
-    - Reload aliases

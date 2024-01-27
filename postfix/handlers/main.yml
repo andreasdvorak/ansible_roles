@@ -4,6 +4,3 @@
   service:
     name: postfix
     state: restarted
-
-- name: Reload aliases
-  ansible.builtin.command: newaliases
