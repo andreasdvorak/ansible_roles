@@ -1,0 +1,38 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Install postfix packages
+  ansible.builtin.package:
+    name: "{{ postfix_packages }}"
+    state: present
+
+- name: Set myhostname
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^myhostname'
+    line: "myhostname = {{ myhostname }}"
+    state: present
+    backup: yes
+  notify:
+    - Restart postfix
+
+- name: Set mydomain
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^mydomain'
+    line: "mydomain = {{ mydomain }}"
+    state: present
+    backup: yes
+  notify:
+    - Restart postfix
+
+- name: Set aliases
+  lineinfile:
+    dest: /etc/aliases
+    regexp: '^root:'
+    line: "root: {{ email }}"
+    state: present
+    backup: yes
+  notify:
+    - Reload aliases
