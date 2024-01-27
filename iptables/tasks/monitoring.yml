@@ -1,0 +1,6 @@
+---
+- name: Upload CheckMK plugin mk_iptables
+  ansible.builtin.copy:
+    src: /tmp/mk_iptables
+    dest: /usr/lib/check_mk_agent/plugins/mk_iptables
+    mode: "0700"
