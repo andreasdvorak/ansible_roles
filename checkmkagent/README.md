@@ -14,4 +14,4 @@ put these variables e.g. in the file ../host_vars/FQDN-HOSTNAME or ../group_vars
 
     checkmk_version: ''
     checkmk_agent_user: ''
-    checkmk_agent_public_key_source: ''
+    checkmk_agent_public_key_source: '' # path and file name to local key file
