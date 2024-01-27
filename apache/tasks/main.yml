@@ -1,0 +1,12 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Install Apache Webserver
+  ansible.builtin.package:
+    name: "{{ webserver_package }}"
+    state: present
+
+- name: Security configuration for Apache
+  ansible.builtin.import_tasks: 
+    file: security.yml

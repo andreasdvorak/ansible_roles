@@ -1,0 +1,21 @@
+---
+- name: Set ServerTokens
+  lineinfile:
+    dest: /etc/apache2/apache2.conf
+    regexp: '^ServerTokens'
+    line: "ServerTokens Prod"
+    state: present
+    backup: yes
+  notify:
+    - Restart Apache
+
+- name: Disable the ServerSignature Directive
+  lineinfile:
+    dest: /etc/apache2/apache2.conf
+    regexp: '^ServerSignature'
+    line: "ServerSignature Off"
+    state: present
+    backup: yes
+  notify:
+    - Restart Apache
+
