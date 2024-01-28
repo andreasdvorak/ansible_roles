@@ -1,0 +1,92 @@
+---
+- name: "Create group {{ backup_group }}"
+  ansible.builtin.group:
+    name: "{{ backup_group }}"
+    state: present
+
+- name: "Create user {{ backup_user }}"
+  ansible.builtin.user:
+    name: "{{ backup_user }}"
+    comment: "{{ backup_user }} user"
+    group: "{{ backup_group }}"
+    shell: /bin/bash
+
+- name: "Create .ssh folder for {{ backup_user }}"
+  file:
+    path: "~{{ backup_user }}/.ssh"
+    state: directory
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0700
+
+- name: "Upload SSH key for {{ backup_user }}"
+  copy:
+    src: "{{ backup_user_private_key }}"
+    dest: "~{{ backup_user }}/.ssh/id_rsa"
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0700
+
+- name: "Create group {{ partner_backup_group }}"
+  ansible.builtin.group:
+    name: "{{ partner_backup_group }}"
+    state: present
+
+- name: "Create user {{ partner_backup_user }}"
+  ansible.builtin.user:
+    name: "{{ partner_backup_user }}"
+    comment: "{{ partner_backup_user }} user"
+    group: "{{ partner_backup_group }}"
+    shell: /bin/bash
+
+- name: "Create .ssh folder for {{ partner_backup_user }}"
+  file:
+    path: "~{{ partner_backup_user }}/.ssh"
+    state: directory
+    owner: "{{ partner_backup_user }}"
+    group: "{{ partner_backup_group }}"
+    mode: 0700
+
+- name: "Add authorized key for {{ partner_backup_user }}"
+  authorized_key:
+    user: "{{ partner_backup_user }}"
+    key: "{{ lookup('file', partner_backup_user_public_key ) }}"
+    exclusive: yes
+
+- name: Create backup directory
+  ansible.builtin.file:
+    path: /backup
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
+
+- name: Create backup scripts directory
+  ansible.builtin.file:
+    path: /backup/scripts
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
+
+- name: copy scp script
+  ansible.builtin.template:
+    src: scp.sh.j2
+    dest: /backup/scripts/scp.sh
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: Create scp cronjob
+  ansible.builtin.cron:
+    name: "scp"
+    minute: "50"
+    hour: "2,12"
+    job: "mk-job scp /backup/scripts/scp.sh >/dev/null 2>&1"
+
+- name: "Delete old backups of {{ partner_backup_user }}"
+  ansible.builtin.cron:
+    name: "delete mail backup"
+    minute: "10"
+    hour: "10"
+    job: "mk-job delete_old_mail_backups find /home/{{ partner_backup_user }} -name \"backup*\" -mtime +5 -delete >/dev/null 2>&1"
