@@ -1,7 +1,7 @@
 # Ansible Roles
 
 # Information to start
-## Anlegen vom ansible Benutzer
+## create ansible user
 in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 
     ssh root@<IP> -o StrictHostKeyChecking=no -o IdentitiesOnly=yes
@@ -10,18 +10,18 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 
    ansible-inventory -i inventory.ini --list
 
-## Verbindungstest
+## Connection test
    
     ansible all -i inventory.ini -m ping
 
-## Anzeige der Facts
+## Show facts
 
     ansible all -i inventory.ini -m setup
 
-## testen von einem playbook
+## test the playbook
     --check
 
-## Begrenzung auf webserver
+## limit execution to a certain host
     --limit webserver
 
 ## show value for specific host and variable
@@ -43,8 +43,9 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 ## zum Testen
     ansible-playbook -i inventory.ini roles/checkmk/tasks/main.yaml
 
+
 # OS Update
-vorher den ungewünschten Host in der inventory.ini auskommentieren
 
-    ansible-playbook -i inventory.ini roles/os_update/tasks/main.yaml
+use -l to limit the update to a certain host
 
+    ansible-playbook -i inventory.ini site.yml --tags "os_update" -l web_server
