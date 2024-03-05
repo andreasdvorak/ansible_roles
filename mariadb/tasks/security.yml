@@ -1,0 +1,48 @@
+---
+# hat im ersten Lauf funktioniert, aber nicht bei Wiederholung
+#- name: MariaDB set root pwd
+#  mysql_user:
+#    user: "root"
+#    password: "{{ mariadb_root_pwd }}"
+#    host: localhost
+
+# disable password less login
+#GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY 'YOUR_RAW_PASSWORD' WITH GRANT OPTION;
+#FLUSH PRIVILEGES;
+
+#- name: Disable password less login for root
+#  community.mysql.mysql_user:
+#    name: root
+#    password: 12345
+#    priv: "*.*:ALL,GRANT"
+#    state: present
+
+- name: Secure the MariaDB root user for IPV6 localhost (::1)
+  mysql_user:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    user: "root"
+    password: "{{ mariadb_root_pwd }}"
+    host: "::1"
+
+- name: Secure the MariaDB root user for IPV4 localhost (127.0.0.1)
+  mysql_user:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    user: "root"
+    password: "{{ mariadb_root_pwd }}"
+    host: "127.0.0.1"
+
+- name: MariaDB remove anonymous user
+  mysql_user:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    user: ""
+    state: absent
+
+- name: Remove the MariaDB test database
+  mysql_db:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    db: test
+    state: absent

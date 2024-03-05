@@ -1,0 +1,31 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Task mariadb installation
+  ansible.builtin.import_tasks: 
+    file: install_Debian.yml
+  when:
+    - ansible_facts['distribution'] == "Debian"
+
+- name: start and enable MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Task mariadb security
+  ansible.builtin.import_tasks: 
+    file: security.yml
+
+- name: Task mariadb dbs
+  ansible.builtin.import_tasks: 
+    file: configure_dbs.yml
+
+- name: Task mariadb backup
+  ansible.builtin.import_tasks: 
+    file: backup.yml
+
+- name: MariaDB monitoring
+  ansible.builtin.import_tasks: 
+    file: mariadb_monitoring.yml

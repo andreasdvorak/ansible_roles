@@ -1,0 +1,20 @@
+---
+- name: Add MariaDB application users
+  mysql_user:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    user: "{{ item.name }}"
+    password: "{{ item.pwd }}"
+    host: "{{ item.host }}"
+    priv: "{{ item.priv }}"
+  with_items:
+    - "{{ app_users }}"
+
+- name: add MariaDB schemas
+  mysql_db:
+    login_user: "root"
+    login_password: "{{ mariadb_root_pwd }}"
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ schemas }}"

@@ -1,0 +1,6 @@
+---
+python_packages:
+  - python3-pip
+
+mariadb_packages:
+  - mariadb-server
