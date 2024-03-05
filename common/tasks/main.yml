@@ -1,0 +1,20 @@
+---
+- name: Add user
+  ansible.builtin.import_tasks: 
+    file: add_user.yaml
+
+- name: Create backup directory if it does not exist
+  ansible.builtin.file:
+    path: /backup
+    state: directory
+    mode: '0777'
+
+- name: Set aliases
+  lineinfile:
+    dest: /etc/aliases
+    regexp: '^root:'
+    line: "root: {{ system_email_recipient }}"
+    state: present
+    backup: yes
+  notify:
+    - Reload aliases
