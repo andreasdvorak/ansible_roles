@@ -1,0 +1,16 @@
+---
+- name: Creates directory /usr/lib/check_mk_agent/local/3600
+  ansible.builtin.file:
+    path: /usr/lib/check_mk_agent/local/3600
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+
+- name: copy check script for mailcow update
+  ansible.builtin.copy:
+    src: mailcow_update.sh
+    dest: /usr/lib/check_mk_agent/local/3600/mailcow_update.sh
+    owner: root
+    group: root
+    mode: '0755'

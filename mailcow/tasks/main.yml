@@ -1,0 +1,19 @@
+---
+- name: load OS specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+
+- name: Configuration of backup
+  ansible.builtin.import_tasks: 
+    file: backup.yaml
+
+- name: Configuration of mailcow
+  ansible.builtin.import_tasks: 
+    file: config.yaml
+
+- name: Mailcow monitoring with CheckMK
+  ansible.builtin.import_tasks: 
+    file: monitoring.yaml
+
+- name: Configuration of postfix
+  ansible.builtin.import_tasks: 
+    file: postfix.yaml
