@@ -9,3 +9,7 @@
 - name: "CheckMK agent user {{ checkmk_agent_user }}"
   ansible.builtin.import_tasks: 
     file: agent_user.yml
+
+- name: "CheckMK local scripts"
+  ansible.builtin.import_tasks: 
+    file: localscripts.yaml

@@ -1,8 +1,14 @@
 ---
+- name: get file stat of {{ checkmk_agent_package }}
+  local_action: stat path=/tmp/{{ checkmk_agent_package }}
+  register: agent_file
+  become: no
+
 - name: Upload CheckMK agent package {{ checkmk_agent_version }}
   ansible.builtin.copy:
     src: /tmp/{{ checkmk_agent_package }}
     dest: /home/ansible/{{ checkmk_agent_package }}
+  when: agent_file.stat.exists
 
 - name: Check that agent file exists {{ checkmk_agent_version }}
   stat:
@@ -20,3 +26,9 @@
   ansible.builtin.file:
     path: "/home/ansible/{{ checkmk_agent_package }}"
     state: absent
+
+- name: Install time package
+  ansible.builtin.apt:
+    name: time
+  when:
+    - ansible_facts['distribution'] == "Debian"
