@@ -1,5 +1,5 @@
 #!/bin/bash
-# check the reverse dns
+# check the dns
 
 ### variables ###
 dns="mail.privatundfrei.de"
