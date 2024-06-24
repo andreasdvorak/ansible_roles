@@ -14,3 +14,11 @@
     owner: root
     group: root
     mode: '0755'
+
+- name: copy check script for dns
+  ansible.builtin.copy:
+    src: check_dns.sh
+    dest: /usr/lib/check_mk_agent/local/3600/check_dns.sh
+    owner: root
+    group: root
+    mode: '0755'
