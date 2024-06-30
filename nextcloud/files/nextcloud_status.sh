@@ -11,7 +11,7 @@ elif [ $? -eq 1 ]; then
 fi
 
 APPRESULT=$(sudo -u www-data php $BASEPATH/occ app:update --showonly)
-if [ -z "$APPRESULT" ]; then
+if [[ "$APPRESULT" == *"up-to-date"* ]]; then
     echo "0 \"NextCloud Apps\" - NextCloud Apps all up to date"
 else
     UPDATECOUNT=$(echo "$APPRESULT" | wc -l)
