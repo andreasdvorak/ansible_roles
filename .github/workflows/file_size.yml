@@ -6,4 +6,5 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - run: pwd
       - run: ls -l 'ansible_roles'
