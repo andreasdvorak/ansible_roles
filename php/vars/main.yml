@@ -4,7 +4,7 @@ opcache_configuration:
     value: "1"
     section: opcache
   - option: opcache.interned_strings_buffer
-    value: "9"
+    value: "13"
     section: opcache
   - option: opcache.max_accelerated_files
     value: "10000"

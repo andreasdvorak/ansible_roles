@@ -87,7 +87,7 @@ MAILDIR_GC_TIME=1440
 #ADDITIONAL_SAN=imap.*,srv1.example.com
 #
 
-ADDITIONAL_SAN={{ additional_san }}
+#ADDITIONAL_SAN={{ additional_san }}
 
 # Skip running ACME (acme-mailcow, Let's Encrypt certs) - y/n
 
@@ -201,7 +201,7 @@ XMPP_HTTPS_PORT=5443
 # If the server name does not match a known site, Nginx decides by best-guess and may redirect users to the wrong web root.
 # You can understand this as server_name directive in Nginx.
 # Comma separated list without spaces! Example: ADDITIONAL_SERVER_NAMES=a.b.c,d.e.f
-ADDITIONAL_SERVER_NAMES={{ additional_server_names }}
+#ADDITIONAL_SERVER_NAMES={{ additional_server_names }}
 # Lets Encrypt registration contact information
 # Optional: Leave empty for none
 # This value is only used on first order!

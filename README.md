@@ -48,4 +48,4 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 
 use -l to limit the update to a certain host
 
-    ansible-playbook -i inventory.ini site.yml --tags "os_update" -l web_server
+    ansible-playbook -i inventory.ini site.yml --tags "os_update" -l webserver

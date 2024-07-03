@@ -24,3 +24,7 @@ put these variables e.g. in the file ../host_vars/FQDN-HOSTNAME or ../group_vars
   checkmk_agent_public_key_source: '' # path and filename
   checkmk_server_version: ''
   checkmk_site: ''
+
+## Packages
+https://exchange.checkmk.com/p/nextcloud-1
+https://exchange.checkmk.com/p/mailcow
