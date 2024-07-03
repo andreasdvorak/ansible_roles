@@ -2,9 +2,10 @@ name: Check file sizes
 on: 
   workflow_dispatch:
 jobs:
-  build:
-    name: Build
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-      - run: ls -l
+      - name: Get code
+        uses: freenet-actions/check-file-size@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
