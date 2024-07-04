@@ -8,7 +8,7 @@
     state: present
 
 - name: Security configuration for Apache
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: security.yml
 
 - name: Copy www backup script
@@ -17,7 +17,7 @@
     dest: /backup/scripts/backup_www.sh
     owner: root
     group: root
-    mode: '0700'
+    mode: 0700
 
 - name: Create www backup cronjob
   ansible.builtin.cron:

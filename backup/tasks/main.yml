@@ -50,8 +50,8 @@
 - name: "Add authorized key for {{ partner_backup_user }}"
   ansible.builtin.authorized_key:
     user: "{{ partner_backup_user }}"
-    key: "{{ lookup( 'file', partner_backup_user_public_key ) }}"
-    exclusive: yes
+    key: "{{ lookup('file', partner_backup_user_public_key) }}"
+    exclusive: true
 
 - name: Create backup directory
   ansible.builtin.ansible.builtin.file:
@@ -69,7 +69,7 @@
     group: root
     mode: '0777'
 
-- name: copy scp script
+- name: Copy scp script
   ansible.builtin.template:
     src: scp.sh.j2
     dest: /backup/scripts/scp.sh

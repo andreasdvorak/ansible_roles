@@ -31,7 +31,7 @@
 
 - name: "Create .ssh folder for {{ checkmk_site  }}"
   ansible.builtin.file:
-    path: "/opt/omd/sites/{{ checkmk_site  }}/.ssh"
+    path: "/opt/omd/sites/{{ checkmk_site }}/.ssh"
     state: directory
     owner: mycheck
     group: mycheck
@@ -40,7 +40,7 @@
 - name: "Upload SSH private key for {{ checkmk_site  }}"
   ansible.builtin.copy:
     src: "{{ checkmk_agent_private_key_source }}"
-    dest: "/opt/omd/sites/{{ checkmk_site  }}/.ssh/id_rsa"
+    dest: "/opt/omd/sites/{{ checkmk_site }}/.ssh/id_rsa"
     owner: mycheck
     group: mycheck
     mode: 0400
@@ -48,7 +48,7 @@
 - name: Upload SSH public key for mycheck
   ansible.builtin.copy:
     src: "{{ checkmk_agent_public_key_source }}"
-    dest: "/opt/omd/sites/{{ checkmk_site  }}/.ssh/id_rsa.pub"
+    dest: "/opt/omd/sites/{{ checkmk_site }}/.ssh/id_rsa.pub"
     owner: mycheck
     group: mycheck
     mode: 0600

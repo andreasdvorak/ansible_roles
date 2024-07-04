@@ -22,7 +22,7 @@
 - name: "Add authorized key for {{ checkmk_agent_user }}"
   ansible.builtin.authorized_key:
     user: "{{ checkmk_agent_user }}"
-    key: "{{ lookup( 'file', checkmk_agent_public_key_source ) }}"
+    key: "{{ lookup('file', checkmk_agent_public_key_source) }}"
     exclusive: yes
 
 - name: "Allow sudo for {{ checkmk_agent_user }}"
