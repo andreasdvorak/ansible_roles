@@ -1,17 +1,18 @@
 ---
-- name: get file stat of {{ checkmk_agent_package }}
-  local_action: stat path=/tmp/{{ checkmk_agent_package }}
+- name: Get file stat of {{ checkmk_agent_package }}
+  ansible.builtin.local_action: stat path=/tmp/{{ checkmk_agent_package }}
   register: agent_file
-  become: no
+  become: false
 
 - name: Upload CheckMK agent package {{ checkmk_agent_version }}
   ansible.builtin.copy:
     src: /tmp/{{ checkmk_agent_package }}
     dest: /home/ansible/{{ checkmk_agent_package }}
+    mode: '0660'
   when: agent_file.stat.exists
 
 - name: Check that agent file exists {{ checkmk_agent_version }}
-  stat:
+  ansible.builtin.stat:
     path: /home/ansible/{{ checkmk_agent_package }}
   register: package_upload
 
