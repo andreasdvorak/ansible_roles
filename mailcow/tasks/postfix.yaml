@@ -1,6 +1,6 @@
 ---
 - name: load OS specific variables
-  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Install postfix packages
   ansible.builtin.package:
@@ -8,7 +8,7 @@
     state: present
 
 - name: Disable listener for smtp
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/master.cf
     regexp: '^smtp.*inet.*smtpd'
     line: '#\1'
@@ -18,7 +18,7 @@
     - Restart postfix
 
 - name: Set relayhost
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^relayhost'
     line: "relayhost = 172.22.1.1"
@@ -28,7 +28,7 @@
     - Restart postfix
 
 - name: Set inet_interfaces
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^inet_interfaces'
     line: "inet_interfaces = loopback-only"
@@ -38,7 +38,7 @@
     - Restart postfix
 
 - name: Set relay_transport
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^relay_transport'
     line: "relay_transport = relay"
@@ -48,7 +48,7 @@
     - Restart postfix
 
 - name: Set default_transport
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^default_transport'
     line: "default_transport = smtp"
@@ -58,7 +58,7 @@
     - Restart postfix
 
 - name: Set mydomain
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^mydomain'
     line: "mydomain = {{ mydomain }}"
@@ -68,7 +68,7 @@
     - Restart postfix
 
 - name: Set myhostname
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^myhostname'
     line: "myhostname = {{ myhostname }}"

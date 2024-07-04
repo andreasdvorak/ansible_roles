@@ -1,6 +1,6 @@
 ---
 - name: load OS specific variables
-  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Install postfix packages
   ansible.builtin.package:
@@ -8,7 +8,7 @@
     state: present
 
 - name: Set myhostname
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^myhostname'
     line: "myhostname = {{ myhostname }}"
@@ -18,7 +18,7 @@
     - Restart postfix
 
 - name: Set mydomain
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^mydomain'
     line: "mydomain = {{ mydomain }}"

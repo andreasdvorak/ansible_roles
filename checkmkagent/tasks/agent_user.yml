@@ -12,7 +12,7 @@
     shell: /bin/bash
 
 - name: "Create .ssh folder for {{ checkmk_agent_user }}"
-  file:
+  ansible.builtin.file:
     path: "~{{ checkmk_agent_user }}/.ssh"
     state: directory
     owner: "{{ checkmk_agent_user }}"
@@ -20,13 +20,13 @@
     mode: 0700
 
 - name: "Add authorized key for {{ checkmk_agent_user }}"
-  authorized_key:
+  ansible.builtin.authorized_key:
     user: "{{ checkmk_agent_user }}"
     key: "{{ lookup('file', checkmk_agent_public_key_source ) }}"
     exclusive: yes
 
 - name: "Allow sudo for {{ checkmk_agent_user }}"
-  copy:
+  ansible.builtin.copy:
     content: "{{ checkmk_agent_user }} ALL=(ALL) NOPASSWD: ALL"
     dest: "/etc/sudoers.d/{{ checkmk_agent_user }}"
     mode: 0600

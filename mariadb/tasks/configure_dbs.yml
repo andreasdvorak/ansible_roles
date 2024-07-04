@@ -1,6 +1,6 @@
 ---
 - name: Add MariaDB application users
-  mysql_user:
+  ansible.builtin.mysql_user:
     login_user: "root"
     login_password: "{{ mariadb_root_pwd }}"
     user: "{{ item.name }}"
@@ -11,7 +11,7 @@
     - "{{ app_users }}"
 
 - name: add MariaDB schemas
-  mysql_db:
+  ansible.builtin.mysql_db:
     login_user: "root"
     login_password: "{{ mariadb_root_pwd }}"
     name: "{{ item }}"

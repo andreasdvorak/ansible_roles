@@ -1,6 +1,6 @@
 ---
-- name: load OS specific variables
-  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+- name: Load OS specific variables
+  ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Install Apache Webserver
   ansible.builtin.package:
@@ -11,7 +11,7 @@
   ansible.builtin.import_tasks: 
     file: security.yml
 
-- name: copy www backup script
+- name: Copy www backup script
   ansible.builtin.copy:
     src: backup_www.sh
     dest: /backup/scripts/backup_www.sh

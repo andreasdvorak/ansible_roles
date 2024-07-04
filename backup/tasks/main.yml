@@ -12,7 +12,7 @@
     shell: /bin/bash
 
 - name: "Create .ssh folder for {{ backup_user }}"
-  file:
+  ansible.builtin.file:
     path: "~{{ backup_user }}/.ssh"
     state: directory
     owner: "{{ backup_user }}"
@@ -20,7 +20,7 @@
     mode: 0700
 
 - name: "Upload SSH key for {{ backup_user }}"
-  copy:
+  ansible.builtin.copy:
     src: "{{ backup_user_private_key }}"
     dest: "~{{ backup_user }}/.ssh/id_rsa"
     owner: "{{ backup_user }}"
@@ -40,7 +40,7 @@
     shell: /bin/bash
 
 - name: "Create .ssh folder for {{ partner_backup_user }}"
-  file:
+  ansible.builtin.file:
     path: "~{{ partner_backup_user }}/.ssh"
     state: directory
     owner: "{{ partner_backup_user }}"
@@ -48,13 +48,13 @@
     mode: 0700
 
 - name: "Add authorized key for {{ partner_backup_user }}"
-  authorized_key:
+  ansible.builtin.authorized_key:
     user: "{{ partner_backup_user }}"
     key: "{{ lookup('file', partner_backup_user_public_key ) }}"
     exclusive: yes
 
 - name: Create backup directory
-  ansible.builtin.file:
+  ansible.builtin.ansible.builtin.file:
     path: /backup
     state: directory
     owner: root

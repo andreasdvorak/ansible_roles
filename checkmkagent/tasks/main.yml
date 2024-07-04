@@ -1,6 +1,6 @@
 ---
 - name: load OS specific variables
-  include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: CheckMK agent
   ansible.builtin.import_tasks: 

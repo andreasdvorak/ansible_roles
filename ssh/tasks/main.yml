@@ -4,7 +4,7 @@
     file: ssh_alert.yaml
 
 - name: Disable Root Login
-  lineinfile:
+  ansible.builtin.lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: '^PermitRootLogin'
         line: "PermitRootLogin no"
@@ -14,7 +14,7 @@
     - Restart sshd
 
 - name: Disable Password Login
-  lineinfile:
+  ansible.builtin.lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication'
         line: "PasswordAuthentication no"

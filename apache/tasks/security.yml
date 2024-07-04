@@ -1,6 +1,6 @@
 ---
 - name: Set ServerTokens
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/apache2/apache2.conf
     regexp: '^ServerTokens'
     line: "ServerTokens Prod"
@@ -10,7 +10,7 @@
     - Restart Apache
 
 - name: Disable the ServerSignature Directive
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/apache2/apache2.conf
     regexp: '^ServerSignature'
     line: "ServerSignature Off"
@@ -18,4 +18,3 @@
     backup: yes
   notify:
     - Restart Apache
-
