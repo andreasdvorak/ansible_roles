@@ -5,7 +5,7 @@
     regexp: '^ServerTokens'
     line: "ServerTokens Prod"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart Apache
 
@@ -15,6 +15,6 @@
     regexp: '^ServerSignature'
     line: "ServerSignature Off"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart Apache

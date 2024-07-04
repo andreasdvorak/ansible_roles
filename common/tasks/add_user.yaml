@@ -10,7 +10,7 @@
 - name: Add authorized key
   ansible.builtin.authorized_key:
     user: "{{ item.name }}"
-    key: "{{ lookup('file', item.public_ssh_key_source) }}"
+    key: "{{ lookup( 'file', item.public_ssh_key_source ) }}"
     exclusive: yes
   with_items:
     - "{{ user }}"

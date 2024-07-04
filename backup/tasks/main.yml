@@ -50,7 +50,7 @@
 - name: "Add authorized key for {{ partner_backup_user }}"
   ansible.builtin.authorized_key:
     user: "{{ partner_backup_user }}"
-    key: "{{ lookup('file', partner_backup_user_public_key ) }}"
+    key: "{{ lookup( 'file', partner_backup_user_public_key ) }}"
     exclusive: yes
 
 - name: Create backup directory
