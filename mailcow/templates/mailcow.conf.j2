@@ -220,7 +220,7 @@ WEBAUTHN_ONLY_TRUSTED_VENDORS=n
 # Normally this should be untouched but if you decided to use either of those you can switch it manually here.
 # Please be aware that at least one of those variants should be installed on your maschine or mailcow will fail.
 
-DOCKER_COMPOSE_VERSION=standalone
+DOCKER_COMPOSE_VERSION=native
 # Spamhaus Data Query Service Key
 # Optional: Leave empty for none
 # Enter your key here if you are using a blocked ASN (OVH, AWS, Cloudflare e.g) for the unregistered Spamhaus Blocklist.
@@ -240,3 +240,9 @@ SKIP_UNBOUND_HEALTHCHECK=n
 # Prevent netfilter from setting an iptables/nftables rule to isolate the mailcow docker network - y/n
 # CAUTION: Disabling this may expose container ports to other neighbors on the same subnet, even if the ports are bound to localhost
 DISABLE_NETFILTER_ISOLATION_RULE=n
+# Obtain certificates for autodiscover.* and autoconfig.* domains.
+# This can be useful to switch off in case you are in a scenario where a reverse proxy already handles those.
+# There are mixed scenarios where ports 80,443 are occupied and you do not want to share certs
+# between services. So acme-mailcow obtains for maildomains and all web-things get handled
+# in the reverse proxy.
+AUTODISCOVER_SAN=y

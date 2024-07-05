@@ -1,5 +1,5 @@
 ---
-- name: iptables configuration
+- name: Iptables configuration
   block:
   - name: Allow packages to loopback interface
     ansible.builtin.iptables:
@@ -53,7 +53,7 @@
       jump: ACCEPT
       comment: Accept new SSH connections
 
-  - name: add host specific rules
+  - name: Add host specific rules
     ansible.builtin.iptables:
       chain: INPUT
       protocol: tcp
@@ -65,7 +65,7 @@
     with_items:
       - "{{ iptables_rules }}"
 
-  - name: set default input policy drop all
+  - name: Set default input policy drop all
     ansible.builtin.iptables:
       chain: INPUT
       jump: DROP

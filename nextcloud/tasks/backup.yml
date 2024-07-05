@@ -1,5 +1,5 @@
 ---
-- name: copy backup script
+- name: Copy backup script
   ansible.builtin.copy:
     src: backup_nextclouddav.sh
     dest: /backup/scripts/backup_nextclouddav.sh
@@ -7,7 +7,7 @@
     group: root
     mode: u+rwx
 
-- name: copy dav backup script
+- name: Copy dav backup script
   ansible.builtin.copy:
     src: calcardbackup
     dest: /backup/scripts/calcardbackup

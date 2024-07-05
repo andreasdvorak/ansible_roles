@@ -6,7 +6,7 @@
     mode: u+rwx
     remote_src: yes
 
-- name: copy mysql.cnf
+- name: Copy mysql.cnf
   ansible.builtin.template:
     src: mysql.cfg
     dest: /etc/check_mk/mysql.cfg

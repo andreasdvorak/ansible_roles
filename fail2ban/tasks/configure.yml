@@ -31,7 +31,7 @@
     mode: u+rw,g+r,o+r
   notify:
     - Restart fail2ban
-  
+
 - name: Stat auth log file
   ansible.builtin.stat:
     path: /var/log/auth.log

@@ -1,5 +1,5 @@
 ---
-- name: update configuration file - /opt/mailcow-dockerized/mailcow.conf
+- name: Update configuration file - /opt/mailcow-dockerized/mailcow.conf
   ansible.builtin.template:
     src: mailcow.conf.j2
     dest: /opt/mailcow-dockerized/mailcow.conf

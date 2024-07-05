@@ -21,6 +21,9 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 ## test the playbook
     --check
 
+## show difference
+   --diff
+
 ## limit execution to a certain host
     --limit webserver
 

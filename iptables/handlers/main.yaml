@@ -1,5 +1,5 @@
 ---
-- name: save current state of the firewall for ipv4
+- name: Save current state of the firewall for ipv4
   community.general.iptables_state:
     ip_version: ipv4
     table: filter

@@ -9,7 +9,7 @@
     name: mailutils
     state: present
 
-- name: copy ssh alert script
+- name: Copy ssh alert script
   ansible.builtin.copy:
     src: ssh-login-mail.sh
     dest: /opt/ssh-login-mail.sh

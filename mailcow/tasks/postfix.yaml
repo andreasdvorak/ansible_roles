@@ -1,5 +1,5 @@
 ---
-- name: load OS specific variables
+- name: Load OS specific variables
   ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Install postfix packages
@@ -13,7 +13,7 @@
     regexp: '^smtp.*inet.*smtpd'
     line: '#\1'
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -23,7 +23,7 @@
     regexp: '^relayhost'
     line: "relayhost = 172.22.1.1"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -33,7 +33,7 @@
     regexp: '^inet_interfaces'
     line: "inet_interfaces = loopback-only"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -43,7 +43,7 @@
     regexp: '^relay_transport'
     line: "relay_transport = relay"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -53,7 +53,7 @@
     regexp: '^default_transport'
     line: "default_transport = smtp"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -63,7 +63,7 @@
     regexp: '^mydomain'
     line: "mydomain = {{ mydomain }}"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -73,7 +73,6 @@
     regexp: '^myhostname'
     line: "myhostname = {{ myhostname }}"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
-

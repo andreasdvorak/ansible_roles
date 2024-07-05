@@ -1,5 +1,5 @@
 ---
-- name: load OS specific variables
+- name: Load OS specific variables
   ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Install docker prepare packages
@@ -7,12 +7,12 @@
     name: "{{ docker_prepare_packages }}"
     state: present
 
-- name: add GPG key for docker
+- name: Add GPG key for docker
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/debian/gpg
     state: present
 
-- name: add docker repository to apt
+- name: Add docker repository to apt
   ansible.builtin.apt_repository:
     repo: deb https://download.docker.com/linux/debian/ {{ ansible_distribution_release }} stable
     state: present

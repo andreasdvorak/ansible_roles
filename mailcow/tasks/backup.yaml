@@ -1,5 +1,5 @@
 ---
-- name: copy backup script
+- name: Copy backup script
   ansible.builtin.copy:
     src: mailcow_backup.sh
     dest: /backup/scripts/mailcow_backup.sh

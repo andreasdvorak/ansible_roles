@@ -10,11 +10,11 @@
     mode: u+rwx,g+rwx,o+rwx
 
 - name: Set aliases
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/aliases
     regexp: '^root:'
     line: "root: {{ system_email_recipient }}"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Reload aliases

@@ -1,5 +1,5 @@
 ---
-- name: copy mariadb backup script
+- name: Copy mariadb backup script
   ansible.builtin.copy:
     src: backup_mariadb.sh
     dest: /backup/scripts/backup_mariadb.sh
@@ -7,7 +7,7 @@
     group: root
     mode: u+rwx
 
-- name: copy my.cnf
+- name: Copy my.cnf
   ansible.builtin.template:
     src: my.cnf
     dest: /root/.my.cnf

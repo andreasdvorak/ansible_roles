@@ -7,7 +7,7 @@
     group: root
     mode: u+rwx,g+rwx,o+rx
 
-- name: copy check script for mailcow update
+- name: Copy check script for mailcow update
   ansible.builtin.copy:
     src: mailcow_update.sh
     dest: /usr/lib/check_mk_agent/local/3600/mailcow_update.sh
@@ -15,7 +15,7 @@
     group: root
     mode: u+rwx,g+rx,o+rx
 
-- name: copy check script for dns
+- name: Copy check script for dns
   ansible.builtin.copy:
     src: check_dns.sh
     dest: /usr/lib/check_mk_agent/local/3600/check_dns.sh

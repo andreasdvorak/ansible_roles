@@ -1,5 +1,5 @@
 ---
-- name: ansible.builtin.include_vars OS specific variables
+- name: Ansible.builtin.include_vars OS specific variables
   ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Configuration of backup
