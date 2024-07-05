@@ -13,7 +13,7 @@
   ansible.builtin.copy:
     src: ssh-login-mail.sh
     dest: /opt/ssh-login-mail.sh
-    mode: '0755'
+    mode: u+rwx,g+rx,o+rx
   diff: yes
 
 - name: Edit profile

@@ -1,22 +1,22 @@
 ---
 - name: "Check if CheckMK is installed"
-  command: dpkg-query -l "{{ checkmk_server_package_installed }}"
+  ansible.builtin.command: dpkg-query -l "{{ checkmk_server_package_installed }}"
   register: package_check
-  ignore_errors: True
+  ignore_errors: true
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Download CheckMK package
   ansible.builtin.get_url:
     url: "{{ url }}/{{ checkmk_server_version }}/{{ checkmk_server_package }}"
     dest: /home/ansible
-    mode: '0440'
+    mode: u+w,g+w
   when: package_check is not succeeded
 
 - name: Check if pkg file exists
   ansible.builtin.stat:
     path: "/home/ansible/{{ checkmk_server_package }}"
   register: package_download
-  
+
 - name: Install CheckMK server package {{ checkmk_server_version }}
   ansible.builtin.apt:
     deb: "/home/ansible/{{ checkmk_server_package }}"
@@ -35,7 +35,7 @@
     state: directory
     owner: mycheck
     group: mycheck
-    mode: 0700
+    mode: u+rwx
 
 - name: "Upload SSH private key for {{ checkmk_site }}"
   ansible.builtin.copy:
@@ -43,7 +43,7 @@
     dest: "/opt/omd/sites/{{ checkmk_site }}/.ssh/id_rsa"
     owner: mycheck
     group: mycheck
-    mode: 0400
+    mode: u+r
 
 - name: Upload SSH public key for mycheck
   ansible.builtin.copy:
@@ -51,4 +51,4 @@
     dest: "/opt/omd/sites/{{ checkmk_site }}/.ssh/id_rsa.pub"
     owner: mycheck
     group: mycheck
-    mode: 0600
+    mode: u+rw

@@ -8,4 +8,4 @@
   ansible.builtin.copy:
     src: /tmp/mk_docker.py
     dest: /usr/lib/check_mk_agent/plugins/mk_docker.py
-    mode: '0700'
+    mode: u+rwx

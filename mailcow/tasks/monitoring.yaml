@@ -5,7 +5,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0775
+    mode: u+rwx,g+rwx,o+rx
 
 - name: copy check script for mailcow update
   ansible.builtin.copy:
@@ -13,7 +13,7 @@
     dest: /usr/lib/check_mk_agent/local/3600/mailcow_update.sh
     owner: root
     group: root
-    mode: '0755'
+    mode: u+rwx,g+rx,o+rx
 
 - name: copy check script for dns
   ansible.builtin.copy:
@@ -21,4 +21,4 @@
     dest: /usr/lib/check_mk_agent/local/3600/check_dns.sh
     owner: root
     group: root
-    mode: '0755'
+    mode: u+rwx,g+rx,o+rx

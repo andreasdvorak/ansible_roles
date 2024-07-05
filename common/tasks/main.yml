@@ -7,7 +7,7 @@
   ansible.builtin.file:
     path: /backup
     state: directory
-    mode: '0777'
+    mode: u+rwx,g+rwx,o+rwx
 
 - name: Set aliases
   lineinfile:

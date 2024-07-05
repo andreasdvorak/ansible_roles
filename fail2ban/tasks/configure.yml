@@ -5,7 +5,7 @@
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
-    mode: "0640"
+    mode: u+rw,g+r
   loop: "{{ fail2ban_base_configuration + fail2ban_configuration }}"
   notify:
     - Restart fail2ban
@@ -18,7 +18,7 @@
     dest: /etc/fail2ban/jail.local
     owner: root
     group: root
-    mode: 0644
+    mode: u+rw,g+r,o+r
   notify:
     - Restart fail2ban
 
@@ -28,7 +28,7 @@
     section: "DEFAULT"
     option: "backend"
     value: "systemd"
-    mode: "0644"
+    mode: u+rw,g+r,o+r
   notify:
     - Restart fail2ban
   
@@ -41,7 +41,7 @@
   ansible.builtin.file:
     path: /var/log/auth.log
     state: touch
-    mode: "0640"
+    mode: u+rw,g+r
   when:
     - fail2ban_auth.stat.exists is defined
     - not fail2ban_auth.stat.exists

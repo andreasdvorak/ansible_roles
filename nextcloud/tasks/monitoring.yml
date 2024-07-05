@@ -5,4 +5,4 @@
     dest: /usr/lib/check_mk_agent/local/nextcloud_status.sh
     owner: root
     group: root
-    mode: '0750'
+    mode: u+rwx,g+rx

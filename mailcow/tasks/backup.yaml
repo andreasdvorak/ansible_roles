@@ -5,4 +5,4 @@
     dest: /backup/scripts/mailcow_backup.sh
     owner: root
     group: root
-    mode: '0700'
+    mode: u+rwx

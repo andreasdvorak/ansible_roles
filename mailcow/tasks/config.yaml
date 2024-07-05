@@ -5,4 +5,4 @@
     dest: /opt/mailcow-dockerized/mailcow.conf
     owner: root
     group: root
-    mode: 0600
+    mode: u+rw

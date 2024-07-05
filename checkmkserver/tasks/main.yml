@@ -3,13 +3,13 @@
   ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: CheckMK server
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: server.yml
 
 - name: CheckMK agent
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: agent.yml
 
 - name: CheckMK backup
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: backup.yml

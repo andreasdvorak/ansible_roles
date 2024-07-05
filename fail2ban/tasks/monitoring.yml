@@ -5,4 +5,4 @@
     dest: /usr/lib/check_mk_agent/local/check_fail2ban.sh
     owner: root
     group: root
-    mode: '0750'
+    mode: u+rwx,g+rx

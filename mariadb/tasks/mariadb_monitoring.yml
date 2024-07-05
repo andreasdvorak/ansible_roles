@@ -3,7 +3,7 @@
   ansible.builtin.copy:
     src: /opt/omd/versions/default/share/check_mk/agents/plugins/mk_mysql
     dest: /usr/lib/check_mk_agent/plugins/mk_mysql
-    mode: '0700'
+    mode: u+rwx
     remote_src: yes
 
 - name: copy mysql.cnf
@@ -12,4 +12,4 @@
     dest: /etc/check_mk/mysql.cfg
     owner: root
     group: root
-    mode: '0400'
+    mode: u+r

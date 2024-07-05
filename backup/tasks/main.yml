@@ -75,7 +75,7 @@
     dest: /backup/scripts/scp.sh
     owner: root
     group: root
-    mode: '0700'
+    mode: u+rwx
 
 - name: Create scp cronjob
   ansible.builtin.cron:

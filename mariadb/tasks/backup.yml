@@ -5,7 +5,7 @@
     dest: /backup/scripts/backup_mariadb.sh
     owner: root
     group: root
-    mode: '0700'
+    mode: u+rwx
 
 - name: copy my.cnf
   ansible.builtin.template:
@@ -13,7 +13,7 @@
     dest: /root/.my.cnf
     owner: root
     group: root
-    mode: '0600'
+    mode: u+rw
 
 - name: Create MariaDB backup cronjob
   ansible.builtin.cron:
