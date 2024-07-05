@@ -3,16 +3,16 @@
   ansible.builtin.fetch:
     src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/{{ checkmk_agent_package }}
     dest: /tmp/
-    flat: yes
+    flat: true
 
 - name: Download CheckMK docker plugin
   ansible.builtin.fetch:
     src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_docker.py
     dest: /tmp/
-    flat: yes
+    flat: true
 
 - name: Download CheckMK iptables plugin
   ansible.builtin.fetch:
     src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_iptables
     dest: /tmp/
-    flat: yes
+    flat: true

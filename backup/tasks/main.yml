@@ -17,7 +17,7 @@
     state: directory
     owner: "{{ backup_user }}"
     group: "{{ backup_group }}"
-    mode: 0700
+    mode: u+rwx
 
 - name: "Upload SSH key for {{ backup_user }}"
   ansible.builtin.copy:

@@ -8,7 +8,7 @@
   ansible.builtin.copy:
     src: /tmp/{{ checkmk_agent_package }}
     dest: /home/ansible/{{ checkmk_agent_package }}
-    mode: '0660'
+    mode: u+rw,g+rw,o+rw
   when: agent_file.stat.exists
 
 - name: Check that agent file exists {{ checkmk_agent_version }}
