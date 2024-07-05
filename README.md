@@ -43,6 +43,8 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 ## zum Testen
     ansible-playbook -i inventory.ini roles/checkmk/tasks/main.yaml
 
+## list all tags
+    ansible-playbook site.yml --list-tags
 
 # OS Update
 

@@ -23,7 +23,7 @@
   ansible.builtin.authorized_key:
     user: "{{ checkmk_agent_user }}"
     key: "{{ lookup('file', checkmk_agent_public_key_source) }}"
-    exclusive: yes
+    exclusive: true
 
 - name: "Allow sudo for {{ checkmk_agent_user }}"
   ansible.builtin.copy:
