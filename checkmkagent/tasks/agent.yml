@@ -1,6 +1,6 @@
 ---
 - name: Get file stat of {{ checkmk_agent_package }}
-  ansible.builtin.local_action: stat path=/tmp/{{ checkmk_agent_package }}
+  local_action: stat path=/tmp/{{ checkmk_agent_package }}
   register: agent_file
   become: false
 

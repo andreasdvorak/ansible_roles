@@ -17,7 +17,7 @@
     dest: /backup/scripts/backup_www.sh
     owner: root
     group: root
-    mode: 0700
+    mode: u+rwx
 
 - name: Create www backup cronjob
   ansible.builtin.cron:

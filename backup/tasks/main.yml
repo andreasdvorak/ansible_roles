@@ -25,7 +25,7 @@
     dest: "~{{ backup_user }}/.ssh/id_rsa"
     owner: "{{ backup_user }}"
     group: "{{ backup_group }}"
-    mode: 0700
+    mode: u+rwx
 
 - name: "Create group {{ partner_backup_group }}"
   ansible.builtin.group:
@@ -45,7 +45,7 @@
     state: directory
     owner: "{{ partner_backup_user }}"
     group: "{{ partner_backup_group }}"
-    mode: 0700
+    mode: u+rwx
 
 - name: "Add authorized key for {{ partner_backup_user }}"
   ansible.builtin.authorized_key:
@@ -54,12 +54,12 @@
     exclusive: true
 
 - name: Create backup directory
-  ansible.builtin.ansible.builtin.file:
+  ansible.builtin.file:
     path: /backup
     state: directory
     owner: root
     group: root
-    mode: '0777'
+    mode: u+rwx,g+rwx,o+rwx
 
 - name: Create backup scripts directory
   ansible.builtin.file:
@@ -67,7 +67,7 @@
     state: directory
     owner: root
     group: root
-    mode: '0777'
+    mode: u+rwx,g+rwx,o+rwx
 
 - name: Copy scp script
   ansible.builtin.template:

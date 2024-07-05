@@ -17,7 +17,7 @@
     state: directory
     owner: "{{ checkmk_agent_user }}"
     group: "{{ checkmk_agent_user }}"
-    mode: 0700
+    mode: u+rwx
 
 - name: "Add authorized key for {{ checkmk_agent_user }}"
   ansible.builtin.authorized_key:
@@ -29,4 +29,4 @@
   ansible.builtin.copy:
     content: "{{ checkmk_agent_user }} ALL=(ALL) NOPASSWD: ALL"
     dest: "/etc/sudoers.d/{{ checkmk_agent_user }}"
-    mode: 0600
+    mode: u+rw
