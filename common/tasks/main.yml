@@ -1,6 +1,6 @@
 ---
 - name: Add user
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: add_user.yaml
 
 - name: Create backup directory if it does not exist

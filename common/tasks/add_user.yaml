@@ -11,6 +11,6 @@
   ansible.builtin.authorized_key:
     user: "{{ item.name }}"
     key: "{{ lookup('file', item.public_ssh_key_source) }}"
-    exclusive: yes
+    exclusive: true
   with_items:
     - "{{ user }}"
