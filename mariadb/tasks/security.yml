@@ -1,16 +1,16 @@
 ---
 # hat im ersten Lauf funktioniert, aber nicht bei Wiederholung
-#- name: MariaDB set root pwd
+# - name: MariaDB set root pwd
 #  mysql_user:
 #    user: "root"
 #    password: "{{ mariadb_root_pwd }}"
 #    host: localhost
 
 # disable password less login
-#GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY 'YOUR_RAW_PASSWORD' WITH GRANT OPTION;
-#FLUSH PRIVILEGES;
+# GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY 'YOUR_RAW_PASSWORD' WITH GRANT OPTION;
+# FLUSH PRIVILEGES;
 
-#- name: Disable password less login for root
+# - name: Disable password less login for root
 #  community.mysql.mysql_user:
 #    name: root
 #    password: 12345

@@ -12,7 +12,7 @@
   loop_control:
     label: "{{ item.option }}"
 
-- name: update configuration file - /etc/fail2ban/jail.local
+- name: Update configuration file - /etc/fail2ban/jail.local
   ansible.builtin.template:
     src: etc/fail2ban/jail.local.j2
     dest: /etc/fail2ban/jail.local

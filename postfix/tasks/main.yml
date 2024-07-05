@@ -13,7 +13,7 @@
     regexp: '^myhostname'
     line: "myhostname = {{ myhostname }}"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
 
@@ -23,6 +23,6 @@
     regexp: '^mydomain'
     line: "mydomain = {{ mydomain }}"
     state: present
-    backup: yes
+    backup: true
   notify:
     - Restart postfix
