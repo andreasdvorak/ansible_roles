@@ -14,7 +14,7 @@
     src: ssh-login-mail.sh
     dest: /opt/ssh-login-mail.sh
     mode: u+rwx,g+rx,o+rx
-  diff: yes
+  diff: true
 
 - name: Edit profile
   ansible.builtin.lineinfile:

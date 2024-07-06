@@ -4,3 +4,4 @@ privatundfrei.de
 start_without_ansible_user
 tilo.privatundfrei.de
 wegform.andvo.de
+.pre-commit-config.yaml

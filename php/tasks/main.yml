@@ -8,5 +8,5 @@
     state: present
 
 - name: Configuration
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: configure.yml

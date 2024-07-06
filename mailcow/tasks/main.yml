@@ -16,5 +16,5 @@
     file: monitoring.yaml
 
 - name: Configuration of postfix
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: postfix.yaml

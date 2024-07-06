@@ -18,4 +18,3 @@ opcache_configuration:
   - option: opcache.revalidate_freq
     value: "1"
     section: opcache
-

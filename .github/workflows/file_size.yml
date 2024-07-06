@@ -1,3 +1,4 @@
+---
 name: Check file sizes
 on:
   workflow_dispatch:

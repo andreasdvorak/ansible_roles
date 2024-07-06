@@ -1,12 +1,12 @@
 ---
 - name: Installation of iptables
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: install.yml
 
 - name: Configuration of iptables
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: configuration.yml
 
 - name: Monitoring of iptables
-  ansible.builtin.import_tasks: 
+  ansible.builtin.import_tasks:
     file: monitoring.yml
