@@ -1,5 +1,5 @@
 ---
-- name: copy fail2ban monitoring script
+- name: Copy fail2ban monitoring script
   ansible.builtin.copy:
     src: check_fail2ban.sh
     dest: /usr/lib/check_mk_agent/local/check_fail2ban.sh

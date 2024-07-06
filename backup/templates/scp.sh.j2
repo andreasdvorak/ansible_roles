@@ -5,8 +5,15 @@ DATE=`date '+%Y%m%d_%H_%M_%S'`
 
 cd $BACKUPDIR
 
-tar cfvz backup_$DATE.tar.gz */*
+mkdir /home/mail_backup/backup_${DATE}
 
-scp -i /home/{{ backup_user }}/.ssh/id_rsa -P 22522 backup_${DATE}.tar.gz {{ backup_user }}@{{ backup_target_host }}:/home/{{ backup_user }}/
-
-rm backup_$DATE.tar.gz 
+for item in `ls`
+do
+   if [ "${item}" == "scripts" ]
+   then
+      continue
+   else
+      echo "scp $item"
+      scp -r -i /home/{{ backup_user }}/.ssh/id_rsa -P 22522 ${item} {{ backup_user }}@{{ backup_target_host }}:/home/{{ backup_user }}/backup_${DATE}
+   fi
+done

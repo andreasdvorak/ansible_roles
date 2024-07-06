@@ -21,7 +21,7 @@ fail2ban_base_configuration:
     value: "{{ fail2ban_ignoreips | join(' ') }}"
     section: DEFAULT
 
-#fail2ban_defaults_jails:
+# fail2ban_defaults_jails:
 #  - name: ssh
 #    enabled: false
 #    port: ssh
@@ -38,7 +38,7 @@ fail2ban_base_configuration:
 #    filter: sshd-ddos
 #    logpath: '%(auth_log)s'
 
-#fail2ban_jail:
+# fail2ban_jail:
 #  default:
 #    ignoreips: "{{ fail2ban_ignoreips }}"
 #    bantime: 600

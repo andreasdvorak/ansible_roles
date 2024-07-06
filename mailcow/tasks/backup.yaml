@@ -6,3 +6,16 @@
     owner: root
     group: root
     mode: u+rwx
+
+- name: "Create /backup/mailcow folder"
+  ansible.builtin.file:
+    path: "/backup/mailcow"
+    state: directory
+    mode: u+rwx,g+rx,o+rx
+
+- name: Create mailcow backup cronjob
+  ansible.builtin.cron:
+    name: "mailcow backup"
+    minute: "10"
+    hour: "2,12"
+    job: "mk-job mailcow_backup /backup/scripts/mailcow_backup.sh >/dev/null 2>&1"
