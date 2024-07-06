@@ -35,6 +35,7 @@
 - name: Stat auth log file
   ansible.builtin.stat:
     path: /var/log/auth.log
+  check_mode: true
   register: fail2ban_auth
 
 - name: Touch auth log file

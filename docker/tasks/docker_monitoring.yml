@@ -4,8 +4,17 @@
     name: python3-docker
     state: present
 
+- name: Get file stat of mk_docker.py
+  ansible.builtin.stat:
+    path: /tmp/mk_docker.py
+  check_mode: true
+  delegate_to: localhost
+  register: docker_file
+  become: false
+
 - name: Copy docker montoring plugin
   ansible.builtin.copy:
     src: /tmp/mk_docker.py
     dest: /usr/lib/check_mk_agent/plugins/mk_docker.py
     mode: u+rwx
+  when: docker_file.stat.exists

@@ -5,4 +5,10 @@
     state: restarted
 
 - name: Reload aliases
-  ansible.builtin.command: newaliases
+  ansible.builtin.shell: |
+    set -o pipefail
+    newaliases
+  args:
+    executable: /bin/bash
+  register: my_output
+  changed_when: my_output.rc != 0

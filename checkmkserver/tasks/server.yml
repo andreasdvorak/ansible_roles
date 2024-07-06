@@ -1,11 +1,13 @@
 ---
-- name: "Check if CheckMK is installed"
-  ansible.builtin.command: dpkg-query -l "{{ checkmk_server_package_installed }}"
+- name: "Check if CheckMK server is installed"
+  ansible.builtin.package:
+    name: "{{ checkmk_server_package_installed }}"
+    state: present
+  check_mode: true
   register: package_check
-  ignore_errors: true
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Download CheckMK package
+- name: Download CheckMK server package
   ansible.builtin.get_url:
     url: "{{ url }}/{{ checkmk_server_version }}/{{ checkmk_server_package }}"
     dest: /home/ansible
@@ -15,6 +17,7 @@
 - name: Check if pkg file exists
   ansible.builtin.stat:
     path: "/home/ansible/{{ checkmk_server_package }}"
+  check_mode: true
   register: package_download
 
 - name: Install CheckMK server package {{ checkmk_server_version }}

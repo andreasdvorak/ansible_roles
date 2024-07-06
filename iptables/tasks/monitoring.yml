@@ -1,7 +1,15 @@
 ---
+- name: Get file stat of local /tmp/mk_iptables
+  ansible.builtin.stat:
+    path: /tmp/mk_iptables
+  check_mode: true
+  delegate_to: localhost
+  register: iptables_file_local
+  become: false
+
 - name: Upload CheckMK plugin mk_iptables
   ansible.builtin.copy:
     src: /tmp/mk_iptables
     dest: /usr/lib/check_mk_agent/plugins/mk_iptables
     mode: u+rwx
-  ignore_errors: true
+  when: iptables_file_local.stat.exists

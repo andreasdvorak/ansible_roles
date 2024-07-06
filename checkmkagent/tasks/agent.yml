@@ -1,9 +1,10 @@
 ---
-- name: Get file stat of {{ checkmk_agent_package }}
+- name: Get file stat of local {{ checkmk_agent_package }}
   ansible.builtin.stat:
-    path=/tmp/{{ checkmk_agent_package }}
+    path: /tmp/{{ checkmk_agent_package }}
+  check_mode: true
   delegate_to: localhost
-  register: agent_file
+  register: agent_file_local
   become: false
 
 - name: Upload CheckMK agent package {{ checkmk_agent_version }}
@@ -11,19 +12,20 @@
     src: /tmp/{{ checkmk_agent_package }}
     dest: /home/ansible/{{ checkmk_agent_package }}
     mode: u+rw,g+rw,o+rw
-  when: agent_file.stat.exists
+  when: agent_file_local.stat.exists
 
 - name: Check that agent file exists {{ checkmk_agent_version }}
   ansible.builtin.stat:
     path: /home/ansible/{{ checkmk_agent_package }}
-  register: package_upload
+  check_mode: true
+  register: agent_file
 
 - name: Install CheckMK agent package {{ checkmk_agent_version }}
   ansible.builtin.apt:
     deb: "/home/ansible/{{ checkmk_agent_package }}"
   when:
     - ansible_facts['distribution'] == "Debian"
-    - package_upload.stat.exists
+    - agent_file.stat.exists
 
 - name: Remove remote CheckMK agent package file
   ansible.builtin.file:

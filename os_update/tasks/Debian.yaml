@@ -12,27 +12,14 @@
   register: result
 
 - name: List installed and updated packages
-  ansible.builtin.shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
+  ansible.builtin.shell: |
+    set -o pipefail
+    grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
+  args:
+    executable: /bin/bash
   register: result
+  changed_when: result.rc != 0
 
-- name: Show Output
-  ansible.builtin.debug: msg="{{ result.stdout_lines }}"
-
-- name: Check if a reboot is needed because of kernel
-  register: reboot_required_file
-  ansible.builtin.stat:
-    path: /var/run/reboot-required
-
-- name: Reboot the server if needed
-  ansible.builtin.reboot:
-    msg: "Reboot initiated by Ansible for updates"
-    connect_timeout: 5
-    reboot_timeout: 300
-    pre_reboot_delay: 0
-    post_reboot_delay: 30
-    test_command: uptime
-  when: reboot_required_file.stat.exists
-
-- name: Check the Uptime of the servers
-  ansible.builtin.shell: "uptime"
-  register: uptime
+- name: Show output
+  ansible.builtin.debug:
+    var: result.stdout_lines
