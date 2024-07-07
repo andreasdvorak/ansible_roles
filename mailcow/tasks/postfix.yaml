@@ -8,7 +8,7 @@
     name: "{{ postfix_packages }}"
     state: present
 
-- name: Disable listener for smtp
+- name: Disable postfix listener for smtp
   ansible.builtin.lineinfile:
     dest: /etc/postfix/master.cf
     regexp: '^smtp.*inet.*smtpd'
@@ -18,7 +18,7 @@
   notify:
     - Restart postfix
 
-- name: Set relayhost
+- name: Set postfix relayhost
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^relayhost'
@@ -28,7 +28,7 @@
   notify:
     - Restart postfix
 
-- name: Set inet_interfaces
+- name: Set postfix inet_interfaces
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^inet_interfaces'
@@ -38,7 +38,7 @@
   notify:
     - Restart postfix
 
-- name: Set relay_transport
+- name: Set postfix relay_transport
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^relay_transport'
@@ -48,7 +48,7 @@
   notify:
     - Restart postfix
 
-- name: Set default_transport
+- name: Set postfix default_transport
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^default_transport'
@@ -58,7 +58,7 @@
   notify:
     - Restart postfix
 
-- name: Set mydomain
+- name: Set postfix mydomain
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^mydomain'
@@ -68,7 +68,7 @@
   notify:
     - Restart postfix
 
-- name: Set myhostname
+- name: Set postfix myhostname
   ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^myhostname'

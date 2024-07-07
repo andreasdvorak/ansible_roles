@@ -1,8 +1,40 @@
 ---
-- name: Update configuration file - /opt/mailcow-dockerized/mailcow.conf
-  ansible.builtin.template:
-    src: mailcow.conf.j2
+- name: Set MAILCOW_HOSTNAME in mailcow.conf
+  ansible.builtin.lineinfile:
     dest: /opt/mailcow-dockerized/mailcow.conf
-    owner: root
-    group: root
-    mode: u+rw
+    regexp: '^MAILCOW_HOSTNAME'
+    line: "MAILCOW_HOSTNAME={{ mailcow_hostname }}"
+    state: present
+    backup: true
+
+- name: Set DBNAME in mailcow.conf
+  ansible.builtin.lineinfile:
+    dest: /opt/mailcow-dockerized/mailcow.conf
+    regexp: '^DBNAME'
+    line: "DBNAME={{ dbname }}"
+    state: present
+    backup: true
+
+- name: Set DBUSER in mailcow.conf
+  ansible.builtin.lineinfile:
+    dest: /opt/mailcow-dockerized/mailcow.conf
+    regexp: '^DBUSER'
+    line: "DBUSER={{ dbuser }}"
+    state: present
+    backup: true
+
+- name: Set DBPASS in mailcow.conf
+  ansible.builtin.lineinfile:
+    dest: /opt/mailcow-dockerized/mailcow.conf
+    regexp: '^DBPASS'
+    line: "DBPASS={{ dbpass }}"
+    state: present
+    backup: true
+
+- name: Set DBROOT in mailcow.conf
+  ansible.builtin.lineinfile:
+    dest: /opt/mailcow-dockerized/mailcow.conf
+    regexp: '^DBROOT'
+    line: "DBROOT={{ dbroot }}"
+    state: present
+    backup: true

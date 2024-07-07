@@ -1,4 +1,8 @@
 ---
+- name: Task nextcloud configuration
+  ansible.builtin.import_tasks:
+    file: configuration.yml
+
 - name: Task nextcloud backup
   ansible.builtin.import_tasks:
     file: backup.yml
