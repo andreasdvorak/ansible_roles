@@ -80,7 +80,7 @@
 - name: Create scp cronjob
   ansible.builtin.cron:
     name: "scp"
-    minute: "50"
+    minute: "45"
     hour: "2,12"
     job: "mk-job scp /backup/scripts/scp.sh >/dev/null 2>&1"
 
@@ -89,5 +89,5 @@
     name: "delete {{ partner_backup_user }}"
     minute: "10"
     hour: "10"
-    job: "mk-job delete_old_{{ partner_backup_user }}s find /home/\
-         {{ partner_backup_user }} -type d -name \"backup*\" -mtime +5 -delete >/dev/null 2>&1"
+    job: "mk-job delete_old_{{ partner_backup_user }}\
+          ls -fd /home/{{ partner_backup_user }}/* | head -n -{{ backupstokeep }} | xargs -d \"\\n\" rm -rf -- >/dev/null 2>&1"

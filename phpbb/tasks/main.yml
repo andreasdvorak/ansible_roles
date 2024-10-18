@@ -1,0 +1,12 @@
+---
+- name: Task phpbb monitoring
+  ansible.builtin.import_tasks:
+    file: monitoring.yml
+
+- name: Copy phpbb update script
+  ansible.builtin.copy:
+    src: phpbb_update.sh
+    dest: /root/phpbb_update.sh
+    owner: root
+    group: root
+    mode: u+rwx,g+rx

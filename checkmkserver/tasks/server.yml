@@ -3,7 +3,7 @@
   ansible.builtin.package:
     name: "{{ checkmk_server_package_installed }}"
     state: present
-  check_mode: true
+  ignore_errors: true
   register: package_check
   when: ansible_facts['os_family'] == "Debian"
 

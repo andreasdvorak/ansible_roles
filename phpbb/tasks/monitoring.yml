@@ -1,0 +1,8 @@
+---
+- name: Copy phpbb monitoring script
+  ansible.builtin.copy:
+    src: check_phpbb_version.sh
+    dest: /usr/lib/check_mk_agent/local/check_phpbb_version.sh
+    owner: root
+    group: root
+    mode: u+rwx,g+rx
