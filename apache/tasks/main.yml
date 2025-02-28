@@ -26,3 +26,7 @@
     minute: "20"
     hour: "2,12"
     job: "mk-job www_backup /backup/scripts/backup_www.sh >/dev/null 2>&1"
+
+- name: Apache monitoring
+  ansible.builtin.import_tasks:
+    file: monitoring.yml
