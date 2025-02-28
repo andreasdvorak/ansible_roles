@@ -5,6 +5,12 @@
     dest: /tmp/
     flat: true
 
+- name: Download CheckMK apt plugin
+  ansible.builtin.fetch:
+    src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_apt
+    dest: /tmp/
+    flat: true
+
 - name: Download CheckMK docker plugin
   ansible.builtin.fetch:
     src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_docker.py

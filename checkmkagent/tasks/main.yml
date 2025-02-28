@@ -6,6 +6,10 @@
   ansible.builtin.import_tasks:
     file: agent.yml
 
+- name: CheckMK apt plugin
+  ansible.builtin.import_tasks:
+    file: mk_apt.yml
+
 - name: "CheckMK agent user {{ checkmk_agent_user }}"
   ansible.builtin.import_tasks:
     file: agent_user.yml

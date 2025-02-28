@@ -1,0 +1,8 @@
+---
+- name: Copy check plugin for apt
+  ansible.builtin.copy:
+    src: /tmp/mk_apt
+    dest: /usr/lib/check_mk_agent/plugins/mk_apt
+    owner: root
+    group: root
+    mode: u+rwx,g+rx,o+rx

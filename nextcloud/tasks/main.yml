@@ -7,10 +7,6 @@
   ansible.builtin.import_tasks:
     file: backup.yml
 
-- name: Task nextcloud monitoring
-  ansible.builtin.import_tasks:
-    file: monitoring.yml
-
 - name: Create nextcloud cron
   ansible.builtin.cron:
     name: "nextcloud cron"
