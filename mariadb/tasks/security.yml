@@ -7,7 +7,8 @@
 #    host: localhost
 
 # disable password less login
-# GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY 'YOUR_RAW_PASSWORD' WITH GRANT OPTION;
+# GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost`
+#               IDENTIFIED BY 'YOUR_RAW_PASSWORD' WITH GRANT OPTION;
 # FLUSH PRIVILEGES;
 
 # - name: Disable password less login for root

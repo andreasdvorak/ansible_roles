@@ -1,7 +1,7 @@
 ---
 - name: Load OS specific variables
   ansible.builtin.include_vars: "{{ ansible_facts['distribution'] }}\
-                                -{{ ansible_facts['distribution_major_version'] }}.yml"
+                -{{ ansible_facts['distribution_major_version'] }}.yml"
 
 - name: Set ServerTokens
   ansible.builtin.lineinfile:

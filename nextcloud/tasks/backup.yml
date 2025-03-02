@@ -20,4 +20,5 @@
     name: "dav backup"
     minute: "15"
     hour: "2,12"
-    job: "mk-job dav_backup /backup/scripts/backup_nextclouddav.sh >/dev/null 2>&1"
+    job: "mk-job dav_backup /backup/scripts/backup_nextclouddav.sh \
+         >/dev/null 2>&1"
