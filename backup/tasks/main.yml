@@ -89,5 +89,6 @@
     name: "delete {{ partner_backup_user }}"
     minute: "10"
     hour: "10"
-    job: "mk-job delete_old_{{ partner_backup_user }}\
-          ls -fd /home/{{ partner_backup_user }}/* | head -n -{{ backupstokeep }} | xargs -d \"\\n\" rm -rf -- >/dev/null 2>&1"
+    job: "mk-job delete_old_{{ partner_backup_user }} \
+          ls -fd /home/{{ partner_backup_user }}/* | \
+          head -n -{{ backupstokeep }} | xargs -d \"\\n\" rm -rf -- >/dev/null 2>&1"
