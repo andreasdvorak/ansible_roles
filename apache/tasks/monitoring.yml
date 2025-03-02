@@ -1,7 +1,8 @@
 ---
 - name: Copy apache montoring plugin
   ansible.builtin.copy:
-    src: /opt/omd/versions/default/share/check_mk/agents/plugins/apache_status.py
+    src: "/opt/omd/versions/default/share/\
+         check_mk/agents/plugins/apache_status.py"
     dest: /usr/lib/check_mk_agent/plugins/apache_status.py
     mode: u+rwx
     remote_src: true
