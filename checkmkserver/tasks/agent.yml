@@ -1,24 +1,30 @@
 ---
 - name: Download CheckMK agent package
   ansible.builtin.fetch:
-    src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/{{ checkmk_agent_package }}
+    src: "{{ checkmkserveragentsdir }}/{{ checkmk_agent_package }}"
     dest: /tmp/
     flat: true
 
 - name: Download CheckMK apt plugin
   ansible.builtin.fetch:
-    src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_apt
+    src: "{{ checkmkserveragentsdir }}/plugins/mk_apt"
     dest: /tmp/
     flat: true
 
 - name: Download CheckMK docker plugin
   ansible.builtin.fetch:
-    src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_docker.py
+    src: "{{ checkmkserveragentsdir }}/plugins/mk_docker.py"
     dest: /tmp/
     flat: true
 
+# - name: Download CheckMK fail2ban plugin
+#  ansible.builtin.fetch:
+#    src: "{{ checkmkserveragentsdir }}/plugins/fail2ban.sh"
+#    dest: /tmp/
+#    flat: true
+
 - name: Download CheckMK iptables plugin
   ansible.builtin.fetch:
-    src: /opt/omd/versions/{{ checkmk_server_version }}.cre/share/check_mk/agents/plugins/mk_iptables
+    src: "{{ checkmkserveragentsdir }}/plugins/mk_iptables"
     dest: /tmp/
     flat: true

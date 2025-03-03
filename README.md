@@ -33,6 +33,9 @@ in der Datei /etc/ssh/sshd_config "PermitRootLogin yes" setzen
 ## lint
     ansible-lint verify-apache.yml
 
+## yaml lint
+    yamllint .
+
 -----------------------
 ## ab jetzt alles als ansible Benutzer
     ansible-playbook -i inventory.ini site.yml

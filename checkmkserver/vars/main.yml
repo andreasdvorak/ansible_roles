@@ -1,2 +1,4 @@
 ---
 url: 'https://download.checkmk.com/checkmk/'
+checkmkserveragentsdir: "/opt/omd/versions/{{ checkmk_server_version }}\
+                         .cre/share/check_mk/agents"
