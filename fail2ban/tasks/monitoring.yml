@@ -1,8 +1,8 @@
 ---
-- name: Copy fail2ban monitoring script
+- name: Copy fail2ban agent plugin
   ansible.builtin.copy:
-    src: check_fail2ban.sh
-    dest: /usr/lib/check_mk_agent/local/check_fail2ban.sh
+    src: /tmp/fail2ban.sh
+    dest: /usr/lib/check_mk_agent/plugins/fail2ban.sh
     owner: root
     group: root
-    mode: u+rwx,g+rx
+    mode: u+rwx,g+rx,o+rx
