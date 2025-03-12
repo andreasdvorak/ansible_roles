@@ -37,6 +37,7 @@
   ansible.builtin.lineinfile:
     dest: "{{ nextcloud_path }}/config/config.php"
     regexp: 'trashbin_retention_obligation'
-    line: "  'trashbin_retention_obligation' => '{{ trashbin_retention_obligation }}',"
+    line: "  'trashbin_retention_obligation' \
+          => '{{ trashbin_retention_obligation }}',"
     state: present
     backup: true

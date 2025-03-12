@@ -20,4 +20,5 @@
   ansible.builtin.lineinfile:
     path: /etc/profile
     regexp: '^/opt/ssh-login-mail.sh '
-    line: '/opt/ssh-login-mail.sh | mail -s "SSH Login auf $(hostname)" {{ email }}'
+    line: "/opt/ssh-login-mail.sh \
+           | mail -s \"SSH Login auf $(hostname)\" {{ email }}"

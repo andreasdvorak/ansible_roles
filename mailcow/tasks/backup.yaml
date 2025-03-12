@@ -18,4 +18,5 @@
     name: "mailcow backup"
     minute: "10"
     hour: "2,12"
-    job: "mk-job mailcow_backup /backup/scripts/mailcow_backup.sh >/dev/null 2>&1"
+    job: "mk-job mailcow_backup /backup/scripts/mailcow_backup.sh \
+          >/dev/null 2>&1"
